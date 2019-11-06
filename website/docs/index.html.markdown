@@ -82,3 +82,7 @@ Atlas `provider` block:
 * `username` - (Optional) This is the MongoDB Atlas username. It must be
   provided, but it can also be sourced from the `MONGODB_ATLAS_USERNAME`
   environment variable.
+
+* `api_url` - (Optional) This is the MongoDB API base URL. It can also be
+  sourced from the `MONGODB_ATLAS_API_URL` environment variable. Default
+  value is `https://cloud.mongodb.com/api/atlas/v1.0`.

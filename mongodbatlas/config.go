@@ -10,11 +10,12 @@ import (
 type Config struct {
 	AtlasUsername string
 	AtlasAPIKey   string
+	AtlasAPIURL   string
 }
 
 func (c *Config) NewClient() *ma.Client {
 	t := dac.NewTransport(c.AtlasUsername, c.AtlasAPIKey)
 	httpClient := &http.Client{Transport: &t}
-	client := ma.NewClient(httpClient)
+	client := ma.NewCustomURLClient(httpClient, c.AtlasAPIURL)
 	return client
 }

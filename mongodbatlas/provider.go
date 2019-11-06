@@ -20,6 +20,12 @@ func Provider() terraform.ResourceProvider {
 				DefaultFunc: schema.EnvDefaultFunc("MONGODB_ATLAS_API_KEY", ""),
 				Description: "MongoDB Atlas API Key",
 			},
+			"api_url": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("MONGODB_ATLAS_API_URL", "https://cloud.mongodb.com/api/atlas/v1.0/"),
+				Description: "MongoDB Atlas API base url",
+			},
 		},
 
 		DataSourcesMap: map[string]*schema.Resource{
@@ -45,6 +51,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	config := Config{
 		AtlasUsername: d.Get("username").(string),
 		AtlasAPIKey:   d.Get("api_key").(string),
+		AtlasAPIURL:   d.Get("api_url").(string),
 	}
 
 	client := config.NewClient()
